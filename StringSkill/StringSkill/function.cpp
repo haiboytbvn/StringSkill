@@ -43,7 +43,7 @@ char* returnArrayCharBetweenChildArrays(char *parentStr, char *leftChildStr, cha
 
 //lab 9
 void mergeArrayChar();
-//char* str_cat(char *s1, char *s2);
+char* str_cat(const char *str, ...);
 
 //lab 10
 void stringToArrayNumber();

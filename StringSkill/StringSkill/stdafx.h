@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <stdarg.h>
 
 using namespace std;
 

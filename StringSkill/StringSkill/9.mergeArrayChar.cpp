@@ -2,39 +2,41 @@
 #include "function.cpp"
 
 void mergeArrayChar() {
-
-	char *resultStr = input();
-	cout << endl;
-	char nextStr[100];
-	while (true)
-	{
-		
-		cout << "input next string: ";
-		cin.get(nextStr, 100);
-		cin.ignore();
-		if (nextStr[0] == '\0') {
-			
-			cout << "Finish !";
-			break;
-		}
-		resultStr = strcat(resultStr, nextStr);
-		cout << endl << "To finish, Enter !" << endl;
-	}	
-	output(resultStr);
+	char *val;
+	val = str_cat("Hello", " world!", " I", " am", " a", " student", (char*)NULL);
+	cout << val << endl;
 }
 
 
-//char* str_cat(char *s1, char *s2) {
-//	int size = strlen(s1) + strlen(s2);
-//	char *mergedStr = new char[size];
-//	int i=0;
-//	while (i < size) {
-//		if (i < strlen(s1)) {
-//			mergedStr[i] = s1[i];
-//		}
-//		mergedStr[i + strlen(s1)] = s2[i];
-//		i++;
-//	}
-//	mergedStr[size] = '\0';
-//	return mergedStr;
-//}
+char* str_cat(const char *str, ...)
+{
+	va_list listChar;
+	char *resultStr, *parameter;
+	int sizeResult = 0;
+
+	if (str == NULL)
+		return NULL;
+
+	sizeResult = strlen(str);
+	va_start(listChar, str);
+
+	while ((parameter = va_arg(listChar, char *)) != NULL)
+		sizeResult += strlen(parameter);
+
+	va_end(listChar);
+
+	resultStr = new char[sizeResult + 1];
+	if (resultStr == NULL)
+		return NULL;
+
+	resultStr = strcpy(resultStr, str);
+	va_start(listChar, str);
+
+	while ((parameter = va_arg(listChar, char*)) != NULL)
+		resultStr = strcat(resultStr, parameter);
+
+	va_end(listChar);
+
+
+	return resultStr;
+}
